@@ -7,6 +7,8 @@ from homeassistant.core import callback
 
 from .const import CONF_RFID, CONF_HOST, CONF_FS_INTERVAL, DEFAULT_FS_INTERVAL
 
+DOMAIN = "keba_multi"
+
 _LOGGER = logging.getLogger(__name__)
 
 class KebaMultiConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
@@ -78,4 +80,5 @@ class KebaMultiOptionsFlow(config_entries.OptionsFlow):
                 }
             ),
         )
+
 
