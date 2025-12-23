@@ -1,8 +1,11 @@
+# Constants for the KEBA integration
 DOMAIN = "keba_multi"
 
+# Configuration keys for user input
 CONF_HOST = "host"
-CONF_SCAN_INTERVAL = "scan_interval"
+CONF_RFID = "rfid"  # Aggiungi questa riga
+CONF_FS_INTERVAL = "refresh_interval"
 
+DEFAULT_RFID = "00845500"
 DEFAULT_SCAN_INTERVAL = 5
-
-UDP_PORT = 7090  # KEBA Smart Home UDP port
+DEFAULT_FS_INTERVAL = 5
