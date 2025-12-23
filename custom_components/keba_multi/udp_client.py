@@ -5,10 +5,10 @@ import json
 import logging
 from typing import Any
 
-from .const import UDP_PORT
+# Rimuovi l'importazione di UDP_PORT
+# from .const import UDP_PORT  # Questo non è più necessario.
 
 _LOGGER = logging.getLogger(__name__)
-
 
 class KebaUdpClient(asyncio.DatagramProtocol):
     """Single UDP client shared by all KEBA hosts."""
@@ -26,7 +26,7 @@ class KebaUdpClient(asyncio.DatagramProtocol):
         # IMPORTANT: bind to random local port to support multiple stations
         transport, _ = await self._loop.create_datagram_endpoint(
             lambda: self,
-            local_addr=("0.0.0.0", 0),
+            local_addr=("0.0.0.0", 0),  # Porta locale random (0)
         )
         self._transport = transport
         sockname = transport.get_extra_info("sockname")
@@ -39,7 +39,7 @@ class KebaUdpClient(asyncio.DatagramProtocol):
         host, _port = addr
         text = data.decode(errors="ignore").strip()
 
-        # Replies are JSON-ish, each line terminated with LF in the payload. :contentReference[oaicite:5]{index=5}
+        # Replies are JSON-ish, each line terminated with LF in the payload.
         # We try to parse as JSON object; if it fails, keep raw.
         payload: dict[str, Any] | None = None
         if text.startswith("{") and text.endswith("}"):
@@ -49,7 +49,7 @@ class KebaUdpClient(asyncio.DatagramProtocol):
                 payload = None
 
         if payload is None:
-            # Example non-JSON replies: "TCH-OK :done" or firmware string from "i". :contentReference[oaicite:6]{index=6}
+            # Example non-JSON replies: "TCH-OK :done" or firmware string from "i".
             payload = {"raw": text}
 
         self._last[host] = payload
@@ -74,7 +74,7 @@ class KebaUdpClient(asyncio.DatagramProtocol):
         self._waiters[key] = fut
 
         _LOGGER.debug("UDP send to %s: %s", host, command)
-        self._transport.sendto(command.encode("ascii", "ignore"), (host, UDP_PORT))
+        self._transport.sendto(command.encode("ascii", "ignore"), (host, 7090))  # Porta KEBA 7090
 
         try:
             return await asyncio.wait_for(fut, timeout=timeout)
