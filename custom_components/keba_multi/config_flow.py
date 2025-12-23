@@ -51,6 +51,8 @@ class KebaMultiConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     @staticmethod
     @callback
     def async_get_options_flow(config_entry):
+        # Ensure the handler is valid
+        _LOGGER.debug("Returning options flow for KEBA")
         return KebaMultiOptionsFlow(config_entry)
 
 
