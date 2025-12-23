@@ -5,7 +5,7 @@ from homeassistant import config_entries
 from homeassistant.const import CONF_HOST
 from homeassistant.core import callback
 
-from .const import DOMAIN, CONF_RFID, CONF_FS_INTERVAL, DEFAULT_FS_INTERVAL
+from .const import CONF_RFID, CONF_HOST, CONF_FS_INTERVAL, DEFAULT_FS_INTERVAL
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -78,3 +78,4 @@ class KebaMultiOptionsFlow(config_entries.OptionsFlow):
                 }
             ),
         )
+
