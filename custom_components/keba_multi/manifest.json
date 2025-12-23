@@ -1,0 +1,10 @@
+{
+  "domain": "keba_multi",
+  "name": "KEBA Charging Station (Multi, UDP)",
+  "config_flow": true,
+  "documentation": "https://github.com/next04-ha/keba-multi",
+  "iot_class": "local_polling",
+  "codeowners": ["@next04-ha"],
+  "requirements": [],
+  "version": "0.1.0"
+}

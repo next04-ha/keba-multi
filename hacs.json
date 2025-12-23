@@ -1,0 +1,6 @@
+{
+  "name": "KEBA Charging Station (Multi)",
+  "render_readme": true,
+  "domains": ["keba_multi"],
+  "homeassistant": "2024.6.0"
+}
